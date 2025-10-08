@@ -82,7 +82,7 @@ class Translation {
 	public static function get_by_translator_language(\Skeleton\I18n\Translator $translator, \Skeleton\I18n\LanguageInterface $language): self {
 		if (!isset(self::$cache[$translator->get_name()][$language->name_short])) {
 			$translation = new self();
-			$translator_storage = $translator->get_translator_storage();
+			$translator_storage = clone $translator->get_translator_storage();
 			$translator_storage->set_language($language);
 			$translator_storage->set_name($translator->get_name());
 			$translator_storage->open();
